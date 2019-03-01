@@ -1,0 +1,219 @@
+/* jQuery Scrollable Calendar Styling */
+
+.cal-year, .cal-day-head, .cal-month, .cal-day-body {
+    padding: 0;
+    background-clip: border-box;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.cal-year, .cal-day-head {
+    font-weight: 400;
+    color: #000;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.cal-day-head, .cal-day-body, .cal-year {
+    width: 33.6px;
+  height: 30.5px;
+}
+
+.cal-day-body {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #2f3941;
+}
+
+.cal-day-head {
+
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #c2c8cc;
+}
+
+.calendar-container {
+    overflow: hidden;
+ /* needs to be 1px larger than the content, otherwise causes problems with the heading table in IE & Edge*/
+    position: relative;
+    box-sizing: border-box;
+      width: 274px;
+  height: 292px;
+  border-radius: 4px;
+  box-shadow: 0 8px 30px 0 rgba(4, 68, 77, 0.15);
+  border: solid 1px #d8dcde;
+  background-color: #ffffff;
+}
+}
+
+.calendar-border {
+    position: relative;
+    box-sizing: border-box;
+    border-top-width: 0;
+    width: 100%;
+    z-index: 11;
+    -webkit-tap-highlight-color: transparent;    
+    background-color: #ffffff;
+
+}
+
+.calendar-table {
+    margin-bottom: 0;
+    border-collapse: separate;
+    border: none 0 #fff;
+    table-layout: fixed;
+    text-align: center;
+    border-spacing: 0;
+    background-color: transparent;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.calendar-table thead {
+    background-color: transparent; /* Need this rule to override Foundation's default background color */
+}
+
+.calendar-title {
+    position: relative;
+    text-align: center;
+    display: none;
+}
+
+.calendar-heading-table {
+    position: relative;
+    box-sizing: border-box;
+    z-index: 14;
+    width: 100%;    
+    background-color: #ffffff;
+
+
+}
+
+/* I use IE11 instead of rems as IE11 rounds rem values to two decimal places */
+
+.cal-mouse-only {
+    height: 270px;
+}
+
+.calendar-scroll-container {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 300px; /* Was 273px but I expanded it to move the natural scroll bar more to the right so the mouse wouldn't change */
+    padding: 0 20px 0 0;
+    margin: 0;
+    overflow-y: scroll; /* has to be scroll, not auto to get momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.calendar-thumb {
+    display: none;
+    position: absolute;
+    width: 22px;
+    height: 45px;
+    margin: 0;
+    right: 1px;
+    top: 0;
+    background-color: #125716;
+    background: -moz-radial-gradient(center, ellipse cover, #91cf94 0%, #125716 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #91cf94), color-stop(100%, #125716)); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, #91cf94 0%, #125716 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, #91cf94 0%, #125716 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover, #91cf94 0%, #125716 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center, #91cf94 0%, #125716 100%); /* W3C */
+    border-radius: 11px;
+    cursor: ns-resize;
+    z-index: 13;
+    opacity: 0;
+    transition: opacity 0.2s linear 0s;
+}
+
+.cal-scroll-grabbed {
+    cursor: ns-resize;
+}
+
+.calendar-track {
+    display: none;
+    background-color: #125716;
+    background-color: rgba(18, 87, 22, 0.4);
+    position: absolute;
+    margin: 0;
+    right: 0;
+    top: 0;
+    width: 24px;
+    border-radius: 12px;
+    z-index: 12;
+    opacity: 0;
+    transition: opacity 0.2s linear 0s;
+}
+
+.cal-mouse-only .calendar-track {
+    height: 232px;
+}
+
+.cal-mouse-touch .calendar-track {
+    height: 288px;
+}
+
+.cal-border-entered {
+    opacity: 1;
+}
+
+.cal-thumb-grabbed {
+    opacity: 1;
+}
+
+.cal-touch-width {
+    width: 2px;
+    right: 0;
+    background-color: #216d38;
+}
+
+.calendar-weeks-table {
+    width: 253px;
+    left: 0;
+    z-index: auto;
+    position: relative;
+    float: left;
+}
+
+.cal-mouse-touch {
+    height: 289px;
+}
+
+.cal-mouse-touch-td {
+    height: 48px;
+}
+
+.cal-month {
+    width: 100px;
+}
+
+.cal-year {
+    width: 50px;
+}
+
+.month {
+    font-weight: bold;
+}

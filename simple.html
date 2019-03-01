@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head lang="en">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Simple Demo</title>
+
+    <meta name="description" content="A scrollable calendar" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+
+    <!-- Styles for the calendar itself-->
+    <link rel="stylesheet" href="css/Calendar.css" >
+
+</head>
+
+<body>
+    <div id="desktop-calendar"></div>
+
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/jquery.calendar.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            "use strict";
+
+            $("#desktop-calendar").scrollableCalendar({
+                calendarTitle: "Scrollable Week Selector",
+                touch: false,
+                startDate: "2012-01-01",
+                endDate: "2017-01-21",
+                startDay: 0, // 0 for Sunday
+                onClick: function () {
+                    window.alert(this);
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>
