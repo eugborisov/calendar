@@ -30,11 +30,11 @@
         defaults = {
             startDate: "2019-01-01",
             endDate: "2022-01-22", // use Jan 21, 2017 for a five year test calendar, Jan 22, 2022 for ten year
-            startDay: 1, // default is 0 for Sunday - can be from 0 to 6 (I'm using zero based as that's how Date.getDay() works)
+            startDay: 0, // default is 0 for Sunday - can be from 0 to 6 (I'm using zero based as that's how Date.getDay() works)
             currentWeek: "latest-week",
             highlight: true,
             readWeeks: [],
-            dayNames: ["M", "T", "W", "T", "F", "S", "S"],
+            dayNames: ["S", "M", "T", "W", "T", "F", "S" ],
             monthNames: ["January", "February", "March", "April", "May", "Jun", "July", "August", "September", "October", "November", "December"],
             calendarTitle: "",
             touch: false,
@@ -132,6 +132,11 @@
             function monthText(dateObj, monthArray) {
                 var month = dateObj.getMonth();
                 return (monthArray[month]);
+            }
+
+            function yearText(dateObj) {
+                var year = dateObj.getFullYear();
+                return (year);
             }
 
             function validateSettings(settings) {
@@ -280,32 +285,32 @@
                     }
 
                 } else { // there's no history for weeks that were read, so they're all unread
-                    for (i = 0; i < numberOfWeeks; i += 1) {
 
-                        if ((startIncrementDateObj.getMonth() % 2) === 0) { // remainder function to find even month
-                            row = row + "<tr data-date=\"" + createDateString(startIncrementDateObj) + "\">";
-                            
-                            if (startIncrementDateObj.getDate() < 7) {
-                                row = row + "<td class=month colspan=7>" + monthText(startIncrementDateObj, settings.monthNames) + "</td></tr>";
-                            } 
+                    for (i = 0; i < numberOfWeeks; i += 1) {                       
 
-                        } else { // it's an odd month
+                        
 
                             row = row + "<tr data-date=\"" + createDateString(startIncrementDateObj) + "\">";
                             
                             if (startIncrementDateObj.getDate() < 7) {
-                                row = row + "<td class=month colspan=7>" + monthText(startIncrementDateObj, settings.monthNames) + "</td></tr>";
+                                row = row + "<td class=month colspan=7>" + monthText(startIncrementDateObj, settings.monthNames) + ' ' + startIncrementDateObj.getFullYear() + "</td></tr>";
                             } 
-                        }
+                       
 
                         j = 7;
+                        
+                        var monthDaysArray = [];
+
                         while (j--) {
-                            if ((startIncrementDateObj.getMonth() % 2) === 0) { // remainder function
-                                row = row + "<td class=\"cal-day-body cal-even-month " + rowHeightClass + "\">" + startIncrementDateObj.getDate() + "</td>";
-                            } else {
-                                row = row + "<td class=\"cal-day-body cal-odd-month " + rowHeightClass + "\">" + startIncrementDateObj.getDate() + "</td>";
-                            }
+                                row = row + "<td class=\"cal-day-body cal-even-month " + rowHeightClass + "\">" + startIncrementDateObj.getDate() + "</td>";                          
+                                
+                            monthDaysArray.push((startIncrementDateObj.getDate()));
                             startIncrementDateObj.setDate(startIncrementDateObj.getDate() + 1);
+                            var currentDate = startIncrementDateObj.getDate();
+
+                            if ((currentDate = 1) && (monthDaysArray.includes(27))) {
+                                break;
+                            }
                         }
                         row = row + "</tr>";
                     }

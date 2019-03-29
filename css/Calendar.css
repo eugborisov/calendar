@@ -18,7 +18,7 @@
     padding-bottom: 2px;
 }
 
-.cal-day-head, .cal-day-body, .cal-year {
+.cal-day-head, .cal-day-body {
     width: 33.6px;
   height: 30.5px;
 }
@@ -211,7 +211,7 @@
 }
 
 .cal-year {
-    width: 50px;
+    width: auto;
 }
 
 .month {
