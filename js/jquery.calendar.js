@@ -134,11 +134,6 @@
                 return (monthArray[month]);
             }
 
-            function yearText(dateObj) {
-                var year = dateObj.getFullYear();
-                return (year);
-            }
-
             function validateSettings(settings) {
                 function arrayRotate(arr, count) {
                     count -= arr.length * Math.floor(count / arr.length);
@@ -235,60 +230,8 @@
                 });
                 $tbody = $("<tbody>");
 
-                // Build the calendar
-                if (settings.readWeeks.length > 0) { // If there's data for which weeks were read, then use the more complex process
-                    for (i = 0; i < numberOfWeeks; i += 1) {
-                        if ((startIncrementDateObj.getMonth() % 2) === 0) { // remainder function to find even month
-                            row = row + "<tr data-date=\"" + createDateString(startIncrementDateObj) + "\">";
-                            if (settings.readWeeks[i] === true) {
-                                row = row + "<td class=\"cal-month cal-month-read " + rowHeightClass + "\">";
-                            } else {
-                                row = row + "<td class=\"cal-month cal-even-month " + rowHeightClass + "\">";
-                            }
-                            if (startIncrementDateObj.getDate() < 8) {
-                                row = row + monthText(startIncrementDateObj, settings.monthNames) + "</td>";
-                            } else {
-                                if (settings.readWeeks[i] === true) {
-                                    row = row + "&#10004;</td>";
-                                } else {
-                                    row = row + "&nbsp;</td>";
-                                }
-                            }
-                        } else { // it's an odd month
-                            row = row + "<tr data-date=\"" + createDateString(startIncrementDateObj) + "\">";
-                            if (settings.readWeeks[i] === true) {
-                                row = row + "<td class=\"cal-month cal-month-read " + rowHeightClass + "\">";
-                            } else {
-                                row = row + "<td class=\"cal-month cal-odd-month " + rowHeightClass + "\">";
-                            }
-                            if (startIncrementDateObj.getDate() < 8) {
-                                row = row + monthText(startIncrementDateObj, settings.monthNames) + "</td>";
-                            } else {
-                                if (settings.readWeeks[i] === true) {
-                                    row = row + "&#10004;</td>";
-                                } else {
-                                    row = row + "&nbsp;</td>";
-                                }
-                            }
-                        }
-
-                        j = 7;
-                        while (j--) {
-                            if ((startIncrementDateObj.getMonth() % 2) === 0) { // remainder function
-                                row = row + "<td class=\"cal-day-body cal-even-month " + rowHeightClass + "\">" + startIncrementDateObj.getDate() + "</td>";
-                            } else {
-                                row = row + "<td class=\"cal-day-body cal-odd-month " + rowHeightClass + "\">" + startIncrementDateObj.getDate() + "</td>";
-                            }
-                            startIncrementDateObj.setDate(startIncrementDateObj.getDate() + 1);
-                        }
-                        row = row + "</tr>";
-                    }
-
-                } else { // there's no history for weeks that were read, so they're all unread
-
-                    for (i = 0; i < numberOfWeeks; i += 1) {                       
-
-                        
+                
+                    for (i = 0; i < numberOfWeeks; i += 1) {                 
 
                             row = row + "<tr data-date=\"" + createDateString(startIncrementDateObj) + "\">";
                             
@@ -296,25 +239,25 @@
                                 row = row + "<td class=month colspan=7>" + monthText(startIncrementDateObj, settings.monthNames) + ' ' + startIncrementDateObj.getFullYear() + "</td></tr>";
                             } 
                        
-
-                        j = 7;
-                        
+                        j = 7;                        
                         var monthDaysArray = [];
 
                         while (j--) {
                                 row = row + "<td class=\"cal-day-body cal-even-month " + rowHeightClass + "\">" + startIncrementDateObj.getDate() + "</td>";                          
                                 
-                            monthDaysArray.push((startIncrementDateObj.getDate()));
+                            monthDaysArray.push(startIncrementDateObj.getDate());
+
                             startIncrementDateObj.setDate(startIncrementDateObj.getDate() + 1);
                             var currentDate = startIncrementDateObj.getDate();
 
-                            if ((currentDate = 1) && (monthDaysArray.includes(27))) {
+                            if (currentDate == 1) {
                                 break;
                             }
                         }
                         row = row + "</tr>";
+
                     }
-                }
+            
                 $tbody.append(row);
                 $tbody.appendTo($tableBody);
                 return $tableBody;
